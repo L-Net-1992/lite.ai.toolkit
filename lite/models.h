@@ -113,6 +113,7 @@
 #include "lite/ort/cv/face_parsing_bisenet.h"
 #include "lite/ort/cv/face_parsing_bisenet_dyn.h"
 #include "lite/ort/cv/yolofacev8.h"
+#include "lite/ort/sd/clip.h"
 
 #endif
 
@@ -128,6 +129,7 @@
 #include "lite/trt/cv/trt_yolov8.h"
 #include "lite/trt/cv/trt_yolov6.h"
 #include "lite/trt/cv/trt_yolov5_blazeface.h"
+#include "lite/trt/sd/trt_clip.h"
 #endif
 
 // ENABLE_MNN
@@ -666,6 +668,14 @@ namespace lite
         typedef _ONNXMobileHumanMatting MobileHumanMatting;
       }
     }
+    namespace sd
+    {
+        typedef ortsd::Clip _ONNXClip;
+        namespace text_encoder
+        {
+            typedef _ONNXClip Clip;
+        }
+    }
 
   }
 #endif
@@ -703,6 +713,15 @@ namespace lite{
                     typedef _TRT_YOLOFaceNet YOLOV8Face;
                     typedef _TRT_YOLO5Face  YOLOV5Face;
                 }
+            }
+        }
+        namespace sd
+        {
+
+            typedef trtsd::TRTClip _TRT_Clip;
+            namespace text_encoder
+            {
+                typedef _TRT_Clip Clip;
             }
         }
     }
